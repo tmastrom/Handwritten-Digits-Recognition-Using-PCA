@@ -6,28 +6,28 @@
 % x is the new data points to be classified (Te28.mat)
 % labels = Lte28.mat
 
-function [class] = PCA (uj, Uq, x, labels, k)
+function [Accuracy] = PCA (uj, Uq, x, labels, k)
 
 
 for i = 1:10 
 
-    imshow(reshape(x(:,k),[28 28]))
-   
-    xpt = x(:,k);
+    %imshow(reshape(x(:,k),[28 28]))
     
-   
-    % only for 1 element
-    f1 = Uq(:,:,i)'* ( x(:,k) - uj(:,i) );
+    f(:,:,i) = Uq(:,:,i)'* bsxfun(@minus, x, uj(:,i));
     
-    x1 = Uq(:,:,i)*f1 + uj(:,i);
+    xhat(:,:,i) = Uq(:,:,i)*f(:,:,i) + uj(:,i);
     
-    e1(:,i) =  norm( xpt - x1 ); 
-
-
-
+    e(:,:,i) = vecnorm( x - xhat(:,:,i) );
+    
 
 end
 
-[e1, i] = min(e1);
+[E, I] = min(e,[],3);
 
-class = i -1;
+I = I'; 
+I = I -1;
+n = 10000 - nnz(I == labels)
+
+Accuracy = (10000 - n)/10000; 
+
+
