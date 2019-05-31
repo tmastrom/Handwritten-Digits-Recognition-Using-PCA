@@ -6,7 +6,10 @@
 % x is the new data points to be classified (Te28.mat)
 % labels = Lte28.mat
 
-function [Accuracy] = PCA (uj, Uq, x, labels, k)
+% prints the number of misclassified samples n
+% returns the accuracy of classification in % 
+
+function [Accuracy] = PCA (uj, Uq, x, labels)
 
 
 for i = 1:10 
@@ -28,6 +31,6 @@ I = I';
 I = I -1;
 n = 10000 - nnz(I == labels)
 
-Accuracy = (10000 - n)/10000; 
+Accuracy = 100*(10000 - n)/10000; 
 
 
