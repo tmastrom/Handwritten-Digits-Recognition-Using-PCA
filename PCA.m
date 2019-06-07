@@ -29,11 +29,14 @@ for i = 1:10
 end
 
 
+
 [E, I] = min(e,[],3);
 
 I = I'; 
 I = I -1;
 n = 10000 - nnz(I == labels)
+
+cm = confusionchart(labels, I)
 
 Accuracy = 100*(10000 - n)/10000; 
 
