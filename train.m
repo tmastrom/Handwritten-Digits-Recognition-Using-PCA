@@ -38,8 +38,9 @@ for i = 1:10
     % u matrix of mean vectors 
     u(:,i) = mean(Dj(:,:,i)'); 
     
-%     figure(1)
-%     imshow(reshape(u(:,i),[28,28]));
+     figure()
+     imshow(reshape(u(:,i),[28,28]));
+
     
     % data matrix A
     A = bsxfun(@minus, Dj(:,:,i), u(:,i));

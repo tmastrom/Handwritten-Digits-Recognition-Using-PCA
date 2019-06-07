@@ -1,3 +1,5 @@
+% Group 9
+
 % PCA-Based Multi-Category Classificaton Algorithm
 
 % uj is the class average of the training data 
@@ -11,6 +13,7 @@
 
 function [Accuracy] = PCA (uj, Uq, x, labels)
 
+t = cputime;
 
 for i = 1:10 
 
@@ -25,6 +28,7 @@ for i = 1:10
 
 end
 
+
 [E, I] = min(e,[],3);
 
 I = I'; 
@@ -33,4 +37,5 @@ n = 10000 - nnz(I == labels)
 
 Accuracy = 100*(10000 - n)/10000; 
 
+t = cputime - t
 
